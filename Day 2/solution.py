@@ -25,31 +25,16 @@ with open(PATH, "r") as lines:
 
 # Part 2
 
-def increasing_with_dampener(arr: list) -> bool:
-    
-    
-    for i in range(1, len(arr)):
-        if not (3 >= arr[i] - arr[i-1] >= 1):
-            return False
-    return True
-
-def decreasing_with_dampener(arr: list) -> bool:
-    for i in range(1, len(arr)):
-        if not (3 >= arr[i-1] - arr[i] >= 1):
-            return False
-    return True
-
 with open(PATH, "r") as lines:
     count = 0
     for report in lines:
         report = [int(r) for r in report.split()]
-        print(report)
-        if increasing_with_dampener(report) or decreasing_with_dampener(report):
+        if increasing(report) or decreasing(report):
             count += 1
         else:
             for i in range(0, len(report)):
                 tmp_report = report[:i] + report[i+1:]
-                if increasing_with_dampener(tmp_report) or decreasing_with_dampener(tmp_report):
+                if increasing(tmp_report) or decreasing(tmp_report):
                     count += 1
                     break
     print("Part 2 count:", count)
